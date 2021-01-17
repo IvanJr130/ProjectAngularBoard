@@ -1,0 +1,19 @@
+
+ <label for="{{ name }}" class="form-label">
+{{ name }}:
+</label>
+<input      
+    class="form-control"
+    id="identifier"
+    [(value)]="initialvalue"   
+    (input)="setValue(recieve.value)"
+    [maxLength]="fieldSize"  
+    [(disabled)]="disabled"   
+    #recieve
+    pInputText > 
+
+
+    <div class="alert-danger" role="alert" *ngIf="!required">
+        O campo {{identifier}} não está preenchido
+    </div>
+    

@@ -1,0 +1,74 @@
+<div class="container" *ngIf="operation == 'search'">
+    <main>
+        <div class="py-5 text-center">
+            <h2>{{title}}</h2>
+        </div>
+        <notice-message></notice-message>
+        <div class="row g-3">
+            <div class="col-md-2 col-lg-4">
+                <notice-inputtext 
+                   identifier="Register" 
+                   name="Register number"
+                   [initialvalue]="idFilter"
+                   [fieldSize]="10"
+                   (fieldValue)="idFilter=$event">
+                </notice-inputtext>
+            </div>
+            <hr class="m-4">
+            <div class="col-md-2 col-lg-4">
+                <button class="btn btn-primary" (click)="search()">
+                    Search
+                </button>
+            </div>
+  
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Register Number</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Date published</th>
+                        <th scope="col">Date view</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let notice of notices">
+                        <td>{{notice.id}}</td>
+                        <td>{{notice.title}}</td>
+                        <td>{{notice.description}}</td>
+                        <td>{{notice.publicationDate}}</td>
+                        <td>{{notice.viewDate}}</td>                     
+                        <td><button type="button" class="btn btn-success" (click)="view(notice.id)">View</button>
+                        </td>                        
+                        <td><button type="button" class="btn btn-primary" (click)="edit(notice.id)">Update</button>
+                        </td>
+                        <td><button type="button" class="btn btn-danger" (click)="delete(notice.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr class="m-4">
+            <div class="col-md-2 col-lg-4">
+            <button class="btn btn-primary" (click)="include()">
+                Include
+            </button>
+        </div>
+        </div>
+    </main>
+</div>
+
+
+
+
+
+
+
+<app-notice-board-control *ngIf="operation == 'include' || operation == 'update' || operation == 'view'" 
+    [notice]="notice"
+    [operation]="operation"
+    (returnOperation)="operation=$event"
+    (retornoObject)="setObject($event)">
+</app-notice-board-control>
