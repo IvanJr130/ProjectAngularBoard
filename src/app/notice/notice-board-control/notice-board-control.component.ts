@@ -39,7 +39,8 @@ export class NoticeBoardControlComponent implements OnInit {
     }else if(this.operation == Operation.UPDATE){
       this.title = TITLE.UPDATE + " NOTICE " + this.notice.id;
       this.notice.viewDate = Utils.getCurrentDay();
-    
+      
+      
     }else{
       this.title = TITLE.VIEW + " NOTICE " +  this.notice.id;
       this.notice.viewDate = Utils.getCurrentDay();
